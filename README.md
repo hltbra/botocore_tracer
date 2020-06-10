@@ -2,6 +2,8 @@
 
 Record botocore calls dynamically for auditing. This can be useful to see all AWS calls made from your app and also create tighter IAM policies.
 
+**DISCLAIMER: This library is an ongoing experiment.**
+
 ## Use cases
 
 ### Test Suites

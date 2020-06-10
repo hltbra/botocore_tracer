@@ -45,7 +45,10 @@ def register_botocore_event(event_name, request, **kwargs):
     if 'json' in str(request.headers.get('content-type', b'')):
         body = _to_tuples(json.loads(request.body))
     else:
-        body = _to_tuples(parse_qsl(request.body))
+        if hasattr(request.body, 'read'):
+            body = '<content redacted>'
+        else:
+            body = _to_tuples(parse_qsl(request.body))
     service, api = event_name.replace(f'{BOTOCORE_EVENT_TO_CATCH}.', '').split('.', 1)
     call_info = (f'{service}:{api}', request.url, body)
     key = f'{inspect.getsourcefile(frame)}:{frame.f_lineno}'
