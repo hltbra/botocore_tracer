@@ -2,6 +2,14 @@
 
 Record botocore calls dynamically for auditing. This can be useful to see all AWS calls made from your app and also create tighter IAM policies.
 
+## Use cases
+
+### Test Suites
+Inject `botocore_tracer.install()` into test suites to audit AWS calls and gain confidence on what's necessary for a production enviroment. This works well if you have an extensive test suite, but you'll have to filter out some noise (setup/teardown might make extra AWS calls).
+
+### Development/Staging Environments
+* Inject `botocore_tracer.install()` into your development/staging environments and record AWS calls over time, then analyze the `botocore_tracer--XXX.json` files.
+
 
 ## Examples using boto3
 
